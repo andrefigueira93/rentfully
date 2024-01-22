@@ -1,0 +1,55 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`UpdateBookingDialog > calls updateBooking on save changes 1`] = `
+<div
+  aria-hidden="true"
+  data-aria-hidden="true"
+>
+  <button
+    aria-controls="radix-:r8:"
+    aria-expanded="true"
+    aria-haspopup="dialog"
+    class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground dark:text-white h-9 px-4 py-2"
+    data-state="open"
+    data-testid="update-button"
+    type="button"
+  >
+    Update
+  </button>
+</div>
+`;
+
+exports[`UpdateBookingDialog > populates initial values when dialog is opened 1`] = `
+<div
+  aria-hidden="true"
+  data-aria-hidden="true"
+>
+  <button
+    aria-controls="radix-:r3:"
+    aria-expanded="true"
+    aria-haspopup="dialog"
+    class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground dark:text-white h-9 px-4 py-2"
+    data-state="open"
+    data-testid="update-button"
+    type="button"
+  >
+    Update
+  </button>
+</div>
+`;
+
+exports[`UpdateBookingDialog > renders correctly 1`] = `
+<div>
+  <button
+    aria-controls="radix-:r0:"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground dark:text-white h-9 px-4 py-2"
+    data-state="closed"
+    data-testid="update-button"
+    type="button"
+  >
+    Update
+  </button>
+</div>
+`;

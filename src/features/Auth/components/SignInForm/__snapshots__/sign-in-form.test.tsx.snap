@@ -1,0 +1,70 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SignInForm > renders form fields 1`] = `
+<div>
+  <form
+    class="space-y-8"
+  >
+    <div
+      class="space-y-2"
+    >
+      <label
+        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+        for=":r0:-form-item"
+      >
+        E-mail
+      </label>
+      <input
+        aria-describedby=":r0:-form-item-description"
+        aria-invalid="false"
+        class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+        data-testid="email-input"
+        id=":r0:-form-item"
+        name="email"
+        placeholder="E-mail"
+        value=""
+      />
+      <p
+        class="text-[0.8rem] text-muted-foreground"
+        id=":r0:-form-item-description"
+      >
+        Your best email
+      </p>
+    </div>
+    <div
+      class="space-y-2"
+    >
+      <label
+        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+        for=":r1:-form-item"
+      >
+        Password
+      </label>
+      <input
+        aria-describedby=":r1:-form-item-description"
+        aria-invalid="false"
+        class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+        data-testid="password-input"
+        id=":r1:-form-item"
+        name="password"
+        placeholder="Password"
+        type="password"
+        value=""
+      />
+      <p
+        class="text-[0.8rem] text-muted-foreground"
+        id=":r1:-form-item-description"
+      >
+        Your best password
+      </p>
+    </div>
+    <button
+      class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2 mt-2 w-full"
+      data-testid="sign-in-button"
+      type="submit"
+    >
+      Sign In
+    </button>
+  </form>
+</div>
+`;

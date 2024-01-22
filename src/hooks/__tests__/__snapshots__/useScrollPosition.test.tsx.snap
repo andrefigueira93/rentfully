@@ -1,0 +1,41 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`useScrollPosition hook > should provide the scroll position 1`] = `
+{
+  "all": [
+    {
+      "scrollPosition": {
+        "x": 0,
+        "y": 0,
+      },
+    },
+  ],
+  "current": {
+    "scrollPosition": {
+      "x": 0,
+      "y": 0,
+    },
+  },
+  "error": undefined,
+}
+`;
+
+exports[`useScrollPosition hook > should update the scroll position on scroll 1`] = `
+{
+  "all": [
+    {
+      "scrollPosition": {
+        "x": 0,
+        "y": 0,
+      },
+    },
+  ],
+  "current": {
+    "scrollPosition": {
+      "x": 0,
+      "y": 0,
+    },
+  },
+  "error": undefined,
+}
+`;

@@ -1,0 +1,37 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`useTheme hook > should set the theme to "system" by default 1`] = `
+{
+  "all": [
+    {
+      "setTheme": [Function],
+      "theme": "system",
+    },
+  ],
+  "current": {
+    "setTheme": [Function],
+    "theme": "system",
+  },
+  "error": undefined,
+}
+`;
+
+exports[`useTheme hook > should set the theme to the provided value 1`] = `
+{
+  "all": [
+    {
+      "setTheme": [Function],
+      "theme": "system",
+    },
+    {
+      "setTheme": [Function],
+      "theme": "dark",
+    },
+  ],
+  "current": {
+    "setTheme": [Function],
+    "theme": "dark",
+  },
+  "error": undefined,
+}
+`;
