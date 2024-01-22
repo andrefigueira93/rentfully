@@ -1,6 +1,10 @@
 import { BookingProps, ListBookingProps } from "@/schemas/booking";
 import { bookingFiltersAtom } from "@/store/booking-filters-store";
-import { authUserBookingsAtom, bookingsAtom } from "@/store/bookings-store";
+import {
+  AuthUserBookingsAtomProps,
+  authUserBookingsAtom,
+  bookingsAtom,
+} from "@/store/bookings-store";
 import { addDays } from "date-fns";
 import { useAtom, useAtomValue } from "jotai";
 import React, { PropsWithChildren, createContext, useContext } from "react";
@@ -11,7 +15,7 @@ import { useAuth } from "./useAuth";
 // Define the shape of the context
 interface BookingContextData {
   bookings: Partial<ListBookingProps>;
-  myBookings: Partial<ListBookingProps>;
+  myBookings: AuthUserBookingsAtomProps;
   newBooking: (propertyId: number) => void;
   updateBooking: ({ booking }: { booking: Partial<BookingProps> }) => void;
   deleteBooking: (id: number) => void;
@@ -27,6 +31,56 @@ const BookingProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const { user } = useAuth();
 
   const navigate = useNavigate();
+
+  function checkIfPropertyHaveBookingsInDates({
+    propertyId,
+    userId,
+    checkIn,
+    checkOut,
+  }: {
+    propertyId: number;
+    userId?: number;
+    checkIn?: Date;
+    checkOut?: Date;
+  }) {
+    if (!checkIn || !checkOut) {
+      toast("You should select a check-in and check-out date", {
+        icon: <span className="text-2xl">😅</span>,
+        important: true,
+        position: "top-right",
+      });
+
+      if (typeof window !== "undefined") {
+        throw new Error("You should select a check-in and check-out date");
+      }
+
+      return false;
+    }
+
+    const foundBookings = bookings.some(
+      (item) =>
+        item.propertyId === propertyId &&
+        ((checkIn >= item.checkIn && checkIn <= item.checkOut) ||
+          (checkOut >= item.checkIn && checkOut <= item.checkOut)) &&
+        item.userId !== (userId ?? user?.id) &&
+        item.status === "Confirmed"
+    );
+
+    if (foundBookings) {
+      toast("This property is not available in the selected dates", {
+        icon: <span className="text-2xl">😅</span>,
+        important: true,
+        position: "top-right",
+      });
+
+      if (typeof window !== "undefined") {
+        throw new Error("This property is not available in the selected dates");
+      }
+
+      return false;
+    }
+    return true;
+  }
 
   // While we don't have a backend, we will use this function to create a new booking
   // and add it to the bookings array with a fake id and createdAt date
@@ -55,6 +109,16 @@ const BookingProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
     const today = new Date();
 
+    const checkAvailability = checkIfPropertyHaveBookingsInDates({
+      propertyId,
+      checkIn: filters.checkIn,
+      checkOut: filters.checkOut,
+    });
+
+    if (!checkAvailability) {
+      return;
+    }
+
     setBookings((prev) => [
       ...prev,
       {
@@ -74,6 +138,16 @@ const BookingProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
   // Function to update a booking with updatedAt date
   function updateBooking({ booking }: { booking: Partial<BookingProps> }) {
+    const checkAvailability = checkIfPropertyHaveBookingsInDates({
+      propertyId: booking.propertyId!,
+      checkIn: booking.checkIn,
+      checkOut: booking.checkOut,
+    });
+
+    if (!checkAvailability) {
+      return;
+    }
+
     setBookings((prev) => {
       return prev.map((item) => {
         if (item.id === booking.id) {

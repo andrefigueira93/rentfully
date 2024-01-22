@@ -47,7 +47,7 @@ export function calculateFinalPrice({
     return NaN;
   }
 
-  const guestSum = guests > 1 ? guests - 1 : 1;
+  const guestSum = guests > 1 ? guests - 1 : 0;
   const extraPriceSum = extraPrice * guestSum;
   const priceSum = price + extraPriceSum;
   const finalPrice = priceSum * totalDays;

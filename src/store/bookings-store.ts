@@ -1,5 +1,5 @@
 import { ListBookingProps, NewBookingProps } from "@/schemas/booking";
-import { differenceInDays } from "date-fns";
+import { addDays, differenceInDays } from "date-fns";
 import { atom } from "jotai";
 import { authUserAtom } from "./auth-store";
 import { bookingFiltersAtom } from "./booking-filters-store";
@@ -10,10 +10,10 @@ import { usersAtom } from "./users-store";
 export const bookingsAtom = atom<ListBookingProps>([
   {
     id: 1,
-    userId: 1,
+    userId: 98,
     propertyId: 1,
     checkIn: new Date(),
-    checkOut: new Date(),
+    checkOut: addDays(new Date(), 2),
     status: "Pending",
     guests: 1,
     finalPrice: 200,
@@ -118,3 +118,7 @@ export const canceledBookingsAtom = atom((get) => {
   const bookings = get(bookingsAtom);
   return bookings.filter((booking) => booking.status === "Cancelled");
 });
+
+export type AuthUserBookingsAtomProps = ReturnType<
+  (typeof authUserBookingsAtom)["read"]
+>;

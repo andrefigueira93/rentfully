@@ -17,6 +17,7 @@ describe("calculateFinalPrice", () => {
       calculateFinalPrice({
         price: 50,
         extraPrice: 5,
+        guests: 2,
       })
     ).toBe(55);
 

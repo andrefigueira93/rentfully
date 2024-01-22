@@ -2,6 +2,7 @@
 import TestWrapper from "@/__tests__/wrapper";
 import { act, renderHook } from "@testing-library/react-hooks";
 import bcrypt from "bcryptjs";
+import { addDays } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import { describe, test, vi } from "vitest";
 import { baseUser } from "../../__tests__/test-constants";
@@ -61,6 +62,9 @@ describe("useBooking hook", () => {
         booking: {
           id: 1,
           guests: 2,
+          userId: baseUser.id,
+          checkIn: new Date(),
+          checkOut: addDays(new Date(), 2),
         },
       });
     });

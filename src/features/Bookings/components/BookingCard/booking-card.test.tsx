@@ -3,6 +3,7 @@ import { CompleteBookingProps } from "@/schemas/booking";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import BookingCard from "./index";
+import { addDays } from "date-fns";
 
 vi.mock("@/hooks/useBooking");
 
@@ -28,7 +29,7 @@ const mockBooking = {
     updatedAt: new Date(),
   },
   checkIn: new Date(),
-  checkOut: new Date(),
+  checkOut: addDays(new Date(), 2),
   totalDays: 2,
   guests: 2,
   status: "Pending",

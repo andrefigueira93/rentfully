@@ -14,9 +14,10 @@ import { Label } from "@/components/ui/label";
 import { useBooking } from "@/hooks/useBooking";
 import { calculateFinalPrice, formatCurrency } from "@/lib/utils";
 import { authUserBookingsAtom } from "@/store/bookings-store";
-import { differenceInDays } from "date-fns";
+import { differenceInDays, endOfTomorrow } from "date-fns";
 import { atom, useAtom, useAtomValue } from "jotai";
 import React, { useMemo } from "react";
+import { toast } from "sonner";
 
 interface UpdateBookingDialogProps {
   id: number;
@@ -68,12 +69,34 @@ const UpdateBookingDialog: React.FC<UpdateBookingDialogProps> = ({ id }) => {
 
   function handleUpdateBooking() {
     if (!currentBooking) return;
+
+    if (!checkInDate || !checkOutDate) {
+      toast("Please select check-in and check-out dates", {
+        position: "top-center",
+      });
+      return;
+    }
+
+    if (!guests) {
+      toast("Please select the number of guests");
+      return;
+    }
+
+    if (
+      currentBooking?.property?.maxGuests &&
+      guests > currentBooking?.property?.maxGuests
+    ) {
+      toast("The number of guests cannot exceed the maximum allowed");
+      return;
+    }
+
     updateBooking({
       booking: {
         ...currentBooking,
         checkIn: checkInDate,
         checkOut: checkOutDate,
         guests,
+        totalDays,
         finalPrice,
       },
     });
@@ -95,29 +118,35 @@ const UpdateBookingDialog: React.FC<UpdateBookingDialogProps> = ({ id }) => {
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
+            <Label htmlFor="check-in" className="text-right">
               Chek-in Date
             </Label>
-            <div className="sm:col-span-3">
-              <DatePicker atom={checkInDateAtom} />
+            <div className="col-span-3">
+              <DatePicker id="check-in" atom={checkInDateAtom} />
             </div>
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
+            <Label htmlFor="check-out" className="text-right">
               Chek-out Date
             </Label>
-            <div className="sm:col-span-3">
-              <DatePicker atom={checkOutDateAtom} />
+            <div className="col-span-3">
+              <DatePicker
+                id="check-out"
+                atom={checkOutDateAtom}
+                minDate={endOfTomorrow()}
+              />
             </div>
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
+            <Label htmlFor="guests" className="text-right">
               Number of Guests
             </Label>
-            <div className="sm:col-span-3">
+            <div className="col-span-3">
               <Input
                 type="number"
                 testId="guests-input"
+                min={1}
+                max={currentBooking?.property?.maxGuests}
                 id="guests"
                 name="guests"
                 value={guests}
@@ -125,6 +154,12 @@ const UpdateBookingDialog: React.FC<UpdateBookingDialogProps> = ({ id }) => {
               />
             </div>
           </div>
+          <p className="">
+            This property can host a maximum of{" "}
+            {currentBooking?.property?.maxGuests} guests, for{" "}
+            {formatCurrency(currentBooking?.property?.extraGuestPrice)} per
+            extra guest per night.
+          </p>
         </div>
         <DialogFooter className="items-center">
           <strong>New Total: {formatCurrency(finalPrice)}</strong>

@@ -40,7 +40,7 @@ exports[`CheckInFilter Component > calls setValue with startOfToday when clear b
             fill-rule="evenodd"
           />
         </svg>
-        January 21st, 2024
+        January 22nd, 2024
       </button>
       <button
         class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground dark:text-white h-9 px-4 py-2 ml-1"
@@ -106,7 +106,7 @@ exports[`CheckInFilter Component > renders the CheckInFilter component correctly
             fill-rule="evenodd"
           />
         </svg>
-        January 21st, 2024
+        January 22nd, 2024
       </button>
       <button
         class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground dark:text-white h-9 px-4 py-2 ml-1"
