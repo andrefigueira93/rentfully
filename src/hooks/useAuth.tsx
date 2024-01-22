@@ -42,16 +42,18 @@ const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
       throw new Error("User already exists");
     }
 
-    setRegisteredUsers((prev) => [
-      ...prev,
-      {
+    let newUser = {};
+
+    setRegisteredUsers((prev) => {
+      newUser = {
         ...user,
         id: prev.length + 1,
         createdAt: new Date(),
-      },
-    ]);
+      };
+      return [...prev, newUser];
+    });
 
-    setUser(user);
+    setUser(newUser);
   }
 
   // Sign in function to authenticate a user

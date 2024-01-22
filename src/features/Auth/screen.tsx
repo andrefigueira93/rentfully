@@ -1,12 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import React, { useMemo } from "react";
+import { useAuth } from "@/hooks/useAuth";
+import React, { useEffect, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import SignInForm from "./components/SignInForm";
 import SignUpForm from "./components/SignUpForm";
 
 const AuthPage: React.FC = () => {
   const [method, setMethod] = React.useState<"signin" | "signup">("signin");
-
+  const { isAuthenticated } = useAuth();
   function handleMethodChange() {
     setMethod((prev) => (prev === "signin" ? "signup" : "signin"));
   }
@@ -20,6 +22,14 @@ const AuthPage: React.FC = () => {
       return <SignUpForm />;
     }
   }, [isSignIn]);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/");
+    }
+  }, [isAuthenticated, navigate]);
 
   return (
     <Card className="max-w-xs w-full mx-auto shadow-md p-8 rounded-lg">

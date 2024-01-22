@@ -48,9 +48,9 @@ const SignUpForm: React.FC = () => {
       };
 
       // Call API
-      // setTimeout(() => {
-      signUp({ user: values });
-      // }, 1000);
+      setTimeout(() => {
+        signUp({ user: values });
+      }, 1000);
       return values;
     },
     onSuccess: () => {
