@@ -56,7 +56,7 @@ export default function DestinyFilter() {
             <ChevronDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-[200px] p-0">
+        <PopoverContent className="w-[200px] max-h-60 overflow-scroll p-0">
           <Command>
             <CommandInput placeholder="Pick a location..." />
             <CommandEmpty>Destiny not found.</CommandEmpty>
