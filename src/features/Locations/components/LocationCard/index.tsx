@@ -85,7 +85,7 @@ const LocationCard: React.FC<{
           className="h-full w-full object-cover object-center"
         />
       </div>
-      <div aria-hidden="true" className="relative h-96 w-full lg:hidden" />
+      <div aria-hidden="true" className="relative h-80 w-full lg:hidden" />
       <div className="absolute inset-x-0 bottom-0 rounded-bl-lg rounded-br-lg bg-black bg-opacity-50 p-6 backdrop-blur backdrop-filter sm:flex sm:items-center sm:justify-between lg:inset-x-auto lg:inset-y-0 lg:w-96 lg:flex-col lg:items-start lg:rounded-br-none lg:rounded-tl-lg space-y-4">
         <div>
           <h2 id="location-heading" className="text-xl font-bold text-white">
